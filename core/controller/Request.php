@@ -1,5 +1,5 @@
 <?php
-namespace vendor\Core\Controller;
+namespace Matts\Controller;
 
 
 class Request

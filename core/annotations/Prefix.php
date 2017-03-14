@@ -1,14 +1,14 @@
 <?php
 
-namespace vendor\core\annotation;
+namespace Matts\Annotations;
 
 /**
  * Interface Prefix
- * @package vendor\core\annotation
+ * @package vendor\core\annotations
  *
  * @Annotation
  */
-class Prefix extends Annotation
+class Prefix
 {
     public $route;
 
