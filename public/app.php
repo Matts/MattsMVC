@@ -12,6 +12,7 @@ if (!empty($_GET['path'])) {
 }
 
 $request = new Request($_REQUEST);
+$handled = false;
 foreach ($controllers as $controller) {
     if ($container->get('annotationHelper')->getPrefix($controller)->getRoute() == $path[0]) {
         $control = $container->get("directoryHelper")->getPath("controller", $controller);
@@ -22,8 +23,11 @@ foreach ($controllers as $controller) {
         $control = new $control();
         $control->setContainer($container);
         $control->handleRequest($request);
-
+        $handled=true;
     }
+}
+if(!$handled){
+    //Throw 404
 }
 
 

@@ -17,11 +17,11 @@ class Container
 
     public function __construct()
     {
-        $config_ini = parse_ini_file(basedir."/config.ini", true);
+        $this->services['config'] = parse_ini_file(basedir."/config.ini", true);
 
         $this->services['annotationHelper'] = new AnnotationHelper();
         $this->services['directoryHelper'] = new DirectoryHelper();
-        $this->services['databaseManager'] = new DatabaseManager($config_ini);
+        $this->services['databaseManager'] = new DatabaseManager($this->services['config']);
     }
 
     public function registerService($name, $service){
