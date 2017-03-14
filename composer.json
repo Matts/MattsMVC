@@ -1,0 +1,9 @@
+{
+    "require": {
+        "doctrine/orm": "^2.5"
+    },
+    "autoload": {
+        "psr-4": {"Matts\\": "core/",
+            "":"src/"}
+    }
+}

@@ -5,20 +5,36 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="test")
+ * @ORM\Table(name="user")
 
  */
 class User
 {
     /**
      * @ORM\Column(name="id", type="integer")
+     * @ORM\Id()
      */
     private $id;
 
     /**
-     * @ORM\Column(name="display_name", type="integer")
+     * @ORM\Column(name="username", type="integer")
      */
-    private $display_name;
+    private $username;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $password;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $privateKey;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $active;
 
     /**
      * @return mixed
@@ -31,10 +47,67 @@ class User
     /**
      * @return mixed
      */
-    public function getDisplayName()
+    public function getUsername()
     {
-        return $this->display_name;
+        return $this->username;
     }
+
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrivateKey()
+    {
+        return $this->privateKey;
+    }
+
+    /**
+     * @param mixed $privateKey
+     */
+    public function setPrivateKey($privateKey)
+    {
+        $this->privateKey = $privateKey;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param mixed $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
+
 
 
 }

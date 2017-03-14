@@ -1,9 +1,9 @@
 <?php
-use vendor\Core\Controller\Controller;
-use vendor\Core\controller\Request;
-use vendor\core\util\ReflectionHelper;
+use Matts\Controller\Controller;
+use Matts\Controller\Request;
 
-require_once "../vendor/core/Core.php";
+define('commandline', false);
+require_once "../core/Core.php";
 
 if (!empty($_GET['path'])) {
     $path = explode('/', $_GET['path']);
@@ -13,14 +13,16 @@ if (!empty($_GET['path'])) {
 
 $request = new Request($_REQUEST);
 foreach ($controllers as $controller) {
-    if ($annotationHelper->getPrefix($controller)->getRoute() == $path[0]) {
-        $control = ReflectionHelper::getControllerFromFileName($controller);
+    if ($container->get('annotationHelper')->getPrefix($controller)->getRoute() == $path[0]) {
+        $control = $container->get("directoryHelper")->getPath("controller", $controller);
 
         /**
          * @var $control Controller
          */
         $control = new $control();
+        $control->setContainer($container);
         $control->handleRequest($request);
+
     }
 }
 

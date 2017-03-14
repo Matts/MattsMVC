@@ -1,5 +1,4 @@
 <?php
-
 use Matts\Container;
 
 if(commandline!=null && commandline){

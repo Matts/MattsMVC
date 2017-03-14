@@ -20,7 +20,7 @@ class DirectoryHelper
             "annotations"=>'Matts\annotation'
         ];
 
-    public static function getPath($type, $file){
+    public function getPath($type, $file){
         if(strpos($file, '.php') !== false){
             $file = explode('.', $file)[0];
         }

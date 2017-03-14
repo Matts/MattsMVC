@@ -1,9 +1,9 @@
 <?php
-namespace src\Controller;
+namespace Controller;
 
-use vendor\core\annotation\Prefix;
-use vendor\Core\Controller\Controller;
-use vendor\Core\Controller\Request;
+use Matts\Annotations\Prefix;
+use Matts\Controller\Controller;
+use Matts\Controller\Request;
 
 /**
  * @Prefix(route="login")
