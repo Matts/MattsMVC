@@ -3,6 +3,13 @@
 namespace Matts\Annotations;
 
 /**
+ * MattsMVC
+ *
+ * Copyright (c) 2017 Matthew Smeets
+ *
+ * Created By: Matt
+ * Date: 3/15/2017
+ *
  * Interface Prefix
  * @package vendor\core\annotations
  *

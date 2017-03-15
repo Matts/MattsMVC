@@ -1,10 +1,20 @@
 <?php
-
 namespace Matts\Controller;
-
 
 use Matts\Container;
 
+/**
+ * MattsMVC
+ *
+ * Copyright (c) 2017 Matthew Smeets
+ *
+ * Created By: Matt
+ * Date: 3/15/2017
+ *
+ * Class Controller
+ * @package vendor\core\controller
+ *
+ */
 class Controller
 {
     private $container;

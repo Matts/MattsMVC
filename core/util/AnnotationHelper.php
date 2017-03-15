@@ -7,10 +7,16 @@ use Matts\Annotations\Prefix;
 use ReflectionClass;
 
 /**
- * Created by PhpStorm.
- * User: matth
- * Date: 3/14/2017
- * Time: 3:22 PM
+ * MattsMVC
+ *
+ * Copyright (c) 2017 Matthew Smeets
+ *
+ * Created By: Matt
+ * Date: 3/15/2017
+ *
+ * Class AnnotationHelper
+ * @package vendor\util
+ *
  */
 class AnnotationHelper
 {

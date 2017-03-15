@@ -5,6 +5,14 @@ use Matts\Controller\Controller;
 use Matts\Controller\Request;
 
 /**
+ * Copyright (c) 2017 Matthew Smeets
+ *
+ * Created By: Matt
+ * Date: 3/15/2017
+ *
+ * Class UserController
+ * @package Controller
+ *
  * @Prefix(route="users")
  */
 class UserController extends Controller

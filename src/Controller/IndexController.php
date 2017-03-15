@@ -1,19 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Matt
- * Date: 3/15/2017
- * Time: 5:45 PM
- */
-
 namespace Controller;
-
 
 use Matts\Annotations\Prefix;
 use Matts\Controller\Controller;
 use Matts\Controller\Request;
 
 /**
+ * Copyright (c) 2017 Matthew Smeets
+ *
+ * Created By: Matt
+ * Date: 3/15/2017
+ *
  * Class IndexController
  * @package Controller
  *

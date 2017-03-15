@@ -1,6 +1,6 @@
 <?php
-
 namespace Matts;
+
 use Matts\libs\DatabaseManager;
 use Matts\util\AnnotationHelper;
 use Matts\util\DirectoryHelper;
@@ -8,10 +8,16 @@ use Twig_Environment;
 use Twig_Loader_Filesystem;
 
 /**
- * Created by PhpStorm.
- * User: Matt
- * Date: 3/14/2017
- * Time: 9:21 PM
+ * MattsMVC
+ *
+ * Copyright (c) 2017 Matthew Smeets
+ *
+ * Created By: Matt
+ * Date: 3/15/2017
+ *
+ * Class AnnotationHelper
+ * @package vendor\util
+ *
  */
 class Container
 {
@@ -19,15 +25,15 @@ class Container
 
     public function __construct()
     {
-        $this->services['config'] = parse_ini_file(basedir."/config.ini", true);
+        $this->services['config'] = parse_ini_file(basedir . "/config.ini", true);
 
         $this->services['annotationHelper'] = new AnnotationHelper();
         $this->services['directoryHelper'] = new DirectoryHelper();
         $this->services['databaseManager'] = new DatabaseManager($this->services['config']);
 
-        $loader = new Twig_Loader_Filesystem(sourcedir.'\View');
+        $loader = new Twig_Loader_Filesystem(sourcedir . '\View');
         $twig = new Twig_Environment($loader, array(
-            'cache' => basedir.'/cache',
+            'cache' => basedir . '/cache',
             'debug' => debug
         ));
 
@@ -35,11 +41,13 @@ class Container
         $this->services['loader'] = $loader;
     }
 
-    public function registerService($name, $service){
-        $this->services[$name]=$service;
+    public function registerService($name, $service)
+    {
+        $this->services[$name] = $service;
     }
 
-    public function get($name){
+    public function get($name)
+    {
         return $this->services[$name];
     }
 }

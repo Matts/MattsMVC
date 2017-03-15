@@ -1,14 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Matt
- * Date: 3/14/2017
- * Time: 7:18 PM
- */
-
 namespace Matts\util;
 
-
+/**
+ * MattsMVC
+ *
+ * Copyright (c) 2017 Matthew Smeets
+ *
+ * Created By: Matt
+ * Date: 3/15/2017
+ *
+ * Class AnnotationHelper
+ * @package vendor\util
+ *
+ */
 class DirectoryHelper
 {
     private static $sourceDirectories =

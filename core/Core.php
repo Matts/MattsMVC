@@ -1,6 +1,19 @@
 <?php
 use Matts\Container;
 
+/**
+ * MattsMVC
+ *
+ * Copyright (c) 2017 Matthew Smeets
+ *
+ * Created By: Matt
+ * Date: 3/15/2017
+ *
+ * Class AnnotationHelper
+ * @package vendor\util
+ *
+ */
+
 if(commandline!=null && commandline){
     require_once 'autoload.php';
 }else{

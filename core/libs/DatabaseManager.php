@@ -1,10 +1,21 @@
 <?php
 namespace Matts\libs;
 
-
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
 
+/**
+ * MattsMVC
+ *
+ * Copyright (c) 2017 Matthew Smeets
+ *
+ * Created By: Matt
+ * Date: 3/15/2017
+ *
+ * Class DatabaseManager
+ * @package vendor\libs
+ * 
+ */
 class DatabaseManager extends \PDO
 {
     private $em;

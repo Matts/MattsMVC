@@ -4,9 +4,16 @@ namespace Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Copyright (c) 2017 Matthew Smeets
+ *
+ * Created By: Matt
+ * Date: 3/15/2017
+ *
+ * Class User
+ * @package Entity
+ *
  * @ORM\Entity
  * @ORM\Table(name="user")
-
  */
 class User
 {
