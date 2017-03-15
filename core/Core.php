@@ -14,6 +14,13 @@ use Matts\Container;
  *
  */
 
+
+if(!defined("parent")){
+    @define('commandline', true);
+}else{
+    @define('commandline', false);
+}
+
 if(commandline!=null && commandline){
     require_once 'autoload.php';
 }else{

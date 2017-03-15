@@ -2,7 +2,7 @@
 use Matts\Controller\Controller;
 use Matts\Controller\Request;
 
-define('commandline', false);
+define('parent', 'app');
 
 if (isset($_SERVER['HTTP_CLIENT_IP'])
     || isset($_SERVER['HTTP_X_FORWARDED_FOR'])

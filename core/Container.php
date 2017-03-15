@@ -34,7 +34,7 @@ class Container
         $loader = new Twig_Loader_Filesystem(sourcedir . '/View');
         $twig = new Twig_Environment($loader, array(
             'cache' => basedir . '/cache',
-            'debug' => debug
+            'debug' => defined('debug') && debug
         ));
 
         $this->services['twig'] = $twig;

@@ -8,4 +8,6 @@ define('coredir', __DIR__."/core");
 define('vendordir', __DIR__."/vendor");
 
 $autoloader = require_once 'vendor/autoload.php';
+if(!commandline){
 AnnotationRegistry::registerLoader(array($autoloader, 'loadClass'));
+}
