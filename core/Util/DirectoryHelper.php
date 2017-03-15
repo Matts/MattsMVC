@@ -1,5 +1,5 @@
 <?php
-namespace Matts\util;
+namespace Matts\Util;
 
 /**
  * MattsMVC

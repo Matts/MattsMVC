@@ -1,5 +1,5 @@
 <?php
-namespace Matts\libs;
+namespace Matts\Libraries;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
@@ -13,8 +13,8 @@ use Doctrine\ORM\Tools\Setup;
  * Date: 3/15/2017
  *
  * Class DatabaseManager
- * @package vendor\libs
- * 
+ * @package vendor\libraries
+ *
  */
 class DatabaseManager extends \PDO
 {

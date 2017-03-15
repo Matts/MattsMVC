@@ -1,8 +1,7 @@
 <?php
-namespace Matts\util;
+namespace Matts\Util;
 
 use Doctrine\Common\Annotations\AnnotationReader;
-use Matts\Annotations\Annotation;
 use Matts\Annotations\Prefix;
 use ReflectionClass;
 

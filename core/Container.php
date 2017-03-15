@@ -1,7 +1,7 @@
 <?php
 namespace Matts;
 
-use Matts\libs\DatabaseManager;
+use Matts\Libraries\DatabaseManager;
 use Matts\util\AnnotationHelper;
 use Matts\util\DirectoryHelper;
 use Twig_Environment;
@@ -31,7 +31,7 @@ class Container
         $this->services['directoryHelper'] = new DirectoryHelper();
         $this->services['databaseManager'] = new DatabaseManager($this->services['config']);
 
-        $loader = new Twig_Loader_Filesystem(sourcedir . '\View');
+        $loader = new Twig_Loader_Filesystem(sourcedir . '/View');
         $twig = new Twig_Environment($loader, array(
             'cache' => basedir . '/cache',
             'debug' => debug
