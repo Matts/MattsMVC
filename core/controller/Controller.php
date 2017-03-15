@@ -10,11 +10,15 @@ class Controller
     private $container;
 
     public function handleRequest(Request $request){
-        echo "Default Handling";
+        return null;
     }
 
-    public function render($filename){
-        include sourcedir . "/View/" . $filename;
+    public function render($filename, $parameters = array()){
+        /**
+         * @var $twig \Twig_Environment
+         */
+        $twig = $this->get('twig');
+        return $twig->render($filename, $parameters);
     }
 
     public function setContainer(Container $container){

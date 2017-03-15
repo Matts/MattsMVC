@@ -4,6 +4,8 @@ namespace Matts;
 use Matts\libs\DatabaseManager;
 use Matts\util\AnnotationHelper;
 use Matts\util\DirectoryHelper;
+use Twig_Environment;
+use Twig_Loader_Filesystem;
 
 /**
  * Created by PhpStorm.
@@ -22,6 +24,15 @@ class Container
         $this->services['annotationHelper'] = new AnnotationHelper();
         $this->services['directoryHelper'] = new DirectoryHelper();
         $this->services['databaseManager'] = new DatabaseManager($this->services['config']);
+
+        $loader = new Twig_Loader_Filesystem(sourcedir.'\View');
+        $twig = new Twig_Environment($loader, array(
+            'cache' => basedir.'/cache',
+            'debug' => debug
+        ));
+
+        $this->services['twig'] = $twig;
+        $this->services['loader'] = $loader;
     }
 
     public function registerService($name, $service){

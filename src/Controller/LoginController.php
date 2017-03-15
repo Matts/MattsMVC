@@ -13,6 +13,6 @@ class LoginController extends Controller
 
     public function handleRequest(Request $request)
     {
-        dump($request->getRequest());
+
     }
 }

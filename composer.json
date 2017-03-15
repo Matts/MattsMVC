@@ -1,6 +1,7 @@
 {
     "require": {
-        "doctrine/orm": "^2.5"
+        "doctrine/orm": "^2.5",
+        "twig/twig": "~1.31"
     },
     "autoload": {
         "psr-4": {"Matts\\": "core/",
