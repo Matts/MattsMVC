@@ -2,6 +2,7 @@
 namespace Controller;
 
 use Matts\Annotations\Prefix;
+use Matts\Annotations\Route;
 use Matts\Controller\Controller;
 use Matts\Controller\Request;
 
@@ -14,13 +15,14 @@ use Matts\Controller\Request;
  * Class LoginController
  * @package Controller
  *
- * @Prefix(route="login")
  */
 class LoginController extends Controller
 {
-
+    /**
+     * @Route(route="login")
+     */
     public function handleRequest(Request $request)
     {
-
+        dump($this->get('googleAuth')->validateToken("WOVSCLT4ZW7WNXLQ", "913999"));
     }
 }
