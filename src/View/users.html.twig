@@ -6,17 +6,16 @@
         <table class="table">
             <thead>
             <th>Username</th>
-            <th>Password</th>
             <th>Active</th>
             </thead>
             <tbody>
             {% for res in result %}
                 <tr>
                     <td>{{ res.username }}</td>
-                    <td>{{ res.password }}</td>
                     <td>{{ res.active }}</td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-    </div>{% endblock %}
+    </div>
+{% endblock %}

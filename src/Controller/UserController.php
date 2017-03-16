@@ -1,6 +1,7 @@
 <?php
 namespace Controller;
 use Matts\Annotations\Prefix;
+use Matts\Annotations\Route;
 use Matts\Controller\Controller;
 use Matts\Controller\Request;
 
@@ -13,10 +14,15 @@ use Matts\Controller\Request;
  * Class UserController
  * @package Controller
  *
- * @Prefix(route="users")
  */
 class UserController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return string
+     *
+     * @Route(route="users")
+     */
     public function handleRequest(Request $request)
     {
         $result = $this->get('databaseManager')->getEntityManager()->getRepository("Entity\\User")->findAll();

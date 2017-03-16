@@ -24,7 +24,7 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(name="username", type="integer")
+     * @ORM\Column(name="username", type="string")
      */
     private $username;
 

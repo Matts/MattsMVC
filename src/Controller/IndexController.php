@@ -2,6 +2,7 @@
 namespace Controller;
 
 use Matts\Annotations\Prefix;
+use Matts\Annotations\Route;
 use Matts\Controller\Controller;
 use Matts\Controller\Request;
 
@@ -13,13 +14,24 @@ use Matts\Controller\Request;
  *
  * Class IndexController
  * @package Controller
- *
- * @Prefix(route="")
  */
 class IndexController extends Controller
 {
-        public function handleRequest(Request $request)
-        {
-            return $this->render('index.html.twig');
-        }
+    /**
+     * @Route(route="")
+     */
+    public function indexAction(Request $request){
+        return $this->render('index.html.twig');
+    }
+
+    /**
+     * @param Request $request
+     * @return string
+     *
+     * @Route(route="test")
+     */
+    public function handleRequest(Request $request)
+    {
+        return $this->render('index.html.twig');
+    }
 }
