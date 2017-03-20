@@ -1,7 +1,7 @@
 <?php
 use Matts\Annotations\Route;
 use Matts\Controller\Request;
-
+session_start();
 define('parent', 'app');
 
 if (isset($_SERVER['HTTP_CLIENT_IP'])
@@ -15,12 +15,20 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
 
 require_once "../core/Core.php";
 
+
+
 if (!empty($_GET['path'])) {
     $path = explode('/', $_GET['path']);
 } else {
     $path = [""];
 }
-var_dump($_SERVER['REQUEST_METHOD']);
+for ($i=0;$i<sizeof($path);$i++){
+    if(strlen($path[$i])<1){
+        $path[$i]=null;
+    }
+    $path = array_filter($path);
+}
+
 $request = new Request($_POST, $_GET, $_COOKIE, $_SERVER['REQUEST_METHOD']);
 $handled = false;
 
@@ -32,6 +40,14 @@ foreach ($controllers as $controller) {
 
         if ($route instanceof Route) {
             $routeTemplate = explode('/', $route->getRoute());
+
+            for ($i=0;$i<sizeof($routeTemplate);$i++){
+                if(strlen($routeTemplate[$i])<1){
+                    $routeTemplate[$i]=null;
+                }
+                $routeTemplate = array_filter($routeTemplate);
+            }
+            
             $args = [];
             $matches = false;
             if($route->method == $_SERVER['REQUEST_METHOD']){

@@ -50,6 +50,8 @@ class Container
 
         ));
 
+        $twig->addExtension(new \Twig_Extension_Debug());
+
         $twig->addFunction(new \Twig_SimpleFunction('assets', function($url){
             return $this->base.$url;
         }));

@@ -17,7 +17,7 @@ namespace Matts\Annotations;
 class Route
 {
     public $route;
-    public $method;
+    public $method = "GET";
 
     public function getRoute()
     {

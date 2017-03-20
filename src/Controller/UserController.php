@@ -3,6 +3,7 @@ namespace Controller;
 
 use Doctrine\ORM\EntityManager;
 use Entity\User;
+use Matts\Annotations\Permission;
 use Matts\Annotations\Prefix;
 use Matts\Annotations\Route;
 use Matts\Controller\Controller;
@@ -25,6 +26,7 @@ class UserController extends Controller
      * @return string
      *
      * @Route(route="users")
+     * @Permission(authenticated=true)
      */
     public function listUsers(Request $request, $args)
     {
@@ -61,7 +63,7 @@ class UserController extends Controller
         $user->setUsername($request->getPost()['username']);
         $user->setActive($request->getPost()['active']);
         $user->setPassword(password_hash($request->getPost()['password'], PASSWORD_BCRYPT));
-        $user->setPrivateKey('Soon');
+        $user->setPrivateKey($this->get('googleAuth')->generatePrivateKey());
         $em->persist($user);
         $em->flush();
         return json_encode(['200']);

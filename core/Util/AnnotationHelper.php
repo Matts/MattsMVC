@@ -3,6 +3,7 @@ namespace Matts\Util;
 
 use Doctrine\Common\Annotations\Annotation;
 use Doctrine\Common\Annotations\AnnotationReader;
+use Matts\Annotations\Permission;
 use Matts\Annotations\Prefix;
 use Matts\Annotations\Route;
 use ReflectionClass;
@@ -22,6 +23,7 @@ use ReflectionMethod;
  */
 class AnnotationHelper
 {
+
     public function getAnnotationsFromClass($std)
     {
         $annotations = [];
@@ -62,6 +64,16 @@ class AnnotationHelper
         $annotations = $this->getAnnotationsFromMethod(DirectoryHelper::getPath("controller", $controller), $method);
         foreach ($annotations as $annotation){
             if($annotation instanceof Route){
+                return $annotation;
+            }
+        }
+        return null;
+    }
+
+    public function getPermission($controller, $method){
+        $annotations = $this->getAnnotationsFromMethod(DirectoryHelper::getPath("controller", $controller), $method);
+        foreach ($annotations as $annotation){
+            if($annotation instanceof Permission){
                 return $annotation;
             }
         }

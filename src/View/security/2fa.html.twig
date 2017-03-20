@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Welcome {{ user.username }}, please provide your 2fa key</h1>
+        <hr/>
+        <form action="" method="post">
+            <input type="text" id="token" name="token">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+{% endblock %}
