@@ -33,6 +33,6 @@ class IndexController extends Controller
      */
     public function request(Request $request, $args)
     {
-        dump($args);
+        return $this->render('index.html.twig');
     }
 }

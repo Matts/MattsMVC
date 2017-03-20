@@ -13,7 +13,6 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
     define('debug', true);
 }
 
-
 require_once "../core/Core.php";
 
 if (!empty($_GET['path'])) {
@@ -21,8 +20,8 @@ if (!empty($_GET['path'])) {
 } else {
     $path = [""];
 }
-
-$request = new Request($_POST, $_GET, $_COOKIE);
+var_dump($_SERVER['REQUEST_METHOD']);
+$request = new Request($_POST, $_GET, $_COOKIE, $_SERVER['REQUEST_METHOD']);
 $handled = false;
 
 foreach ($controllers as $controller) {
@@ -35,6 +34,7 @@ foreach ($controllers as $controller) {
             $routeTemplate = explode('/', $route->getRoute());
             $args = [];
             $matches = false;
+            if($route->method == $_SERVER['REQUEST_METHOD']){
 
             if (sizeof($routeTemplate) == sizeof($path)) {
                 for ($i = 0; $i < sizeof($routeTemplate); $i++) {
@@ -49,7 +49,7 @@ foreach ($controllers as $controller) {
                             break;
                         }
                     }
-
+                }
 
                 }
             }

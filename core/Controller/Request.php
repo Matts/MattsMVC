@@ -18,6 +18,7 @@ class Request
     private $post;
     private $get;
     private $cookies;
+    private $method;
 
     /**
      * Request constructor.
@@ -26,11 +27,12 @@ class Request
      * @param $session
      * @param $cookies
      */
-    public function __construct($post, $get, $cookies)
+    public function __construct($post, $get, $cookies, $method)
     {
         $this->post = $post;
         $this->get = $get;
         $this->cookies = $cookies;
+        $this->method=$method;
     }
 
 
@@ -44,6 +46,11 @@ class Request
 
     public function getCookies(){
         return $this->cookies;
+    }
+
+    public function getMethod()
+    {
+        return $this->method;
     }
 
 

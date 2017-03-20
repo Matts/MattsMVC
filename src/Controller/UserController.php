@@ -1,5 +1,8 @@
 <?php
 namespace Controller;
+
+use Doctrine\ORM\EntityManager;
+use Entity\User;
 use Matts\Annotations\Prefix;
 use Matts\Annotations\Route;
 use Matts\Controller\Controller;
@@ -23,10 +26,44 @@ class UserController extends Controller
      *
      * @Route(route="users")
      */
-    public function handleRequest(Request $request, $args)
+    public function listUsers(Request $request, $args)
     {
         $result = $this->get('databaseManager')->getEntityManager()->getRepository("Entity\\User")->findAll();
 
-        return $this->render("users.html.twig", ['dir' => webdir,'result'=>$result]);
+        return $this->render("users.html.twig", ['result' => $result]);
+    }
+
+    /**
+     * @param Request $request
+     * @return string
+     *
+     * @Route(route="users/$id", method="GET")
+     */
+    public function getUser(Request $request, $args)
+    {
+        $result = $this->get('databaseManager')->getEntityManager()->getRepository("Entity\\User")->findBy(['id' => $args['id']]);
+        return $this->render("users.html.twig", ['result' => $result]);
+    }
+
+    /**
+     * @param Request $request
+     * @return string
+     *
+     * @Route(route="users", method="POST")
+     */
+    public function addUser(Request $request, $args)
+    {
+        /**
+         * @var EntityManager $em
+         */
+        $em = $this->get('databaseManager')->getEntityManager();
+        $user = new User();
+        $user->setUsername($request->getPost()['username']);
+        $user->setActive($request->getPost()['active']);
+        $user->setPassword(password_hash($request->getPost()['password'], PASSWORD_BCRYPT));
+        $user->setPrivateKey('Soon');
+        $em->persist($user);
+        $em->flush();
+        return json_encode(['200']);
     }
 }
