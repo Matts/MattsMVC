@@ -3,6 +3,7 @@ namespace Matts;
 
 
 use Matts\Libraries\DatabaseManager;
+use Matts\Security\GoogleAuth;
 use Matts\util\AnnotationHelper;
 use Matts\util\DirectoryHelper;
 
@@ -40,6 +41,7 @@ class Container
         $this->services['annotationHelper'] = new AnnotationHelper();
         $this->services['directoryHelper'] = new DirectoryHelper();
         $this->services['databaseManager'] = new DatabaseManager($this->services['config']);
+        $this->services['googleAuth'] = new GoogleAuth();
 
         $loader = new Twig_Loader_Filesystem(sourcedir . '/View');
         $twig = new Twig_Environment($loader, array(

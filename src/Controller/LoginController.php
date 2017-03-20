@@ -15,11 +15,10 @@ use Matts\Controller\Request;
  * Class LoginController
  * @package Controller
  *
- * @Prefix(route="login")
  */
 class LoginController extends Controller
 {
-    /**
+    /*
      * @Route(route="generate")
      */
     public function generateSecret(Request $request){
