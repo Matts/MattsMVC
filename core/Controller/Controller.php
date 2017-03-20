@@ -19,10 +19,6 @@ class Controller
 {
     private $container;
 
-    public function handleRequest(Request $request){
-        return null;
-    }
-
     public function render($filename, $parameters = array()){
         /**
          * @var $twig \Twig_Environment

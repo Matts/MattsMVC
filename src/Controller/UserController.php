@@ -23,10 +23,10 @@ class UserController extends Controller
      *
      * @Route(route="users")
      */
-    public function handleRequest(Request $request)
+    public function handleRequest(Request $request, $args)
     {
         $result = $this->get('databaseManager')->getEntityManager()->getRepository("Entity\\User")->findAll();
 
-        return $this->render("users.html.twig", ['result'=>$result]);
+        return $this->render("users.html.twig", ['dir' => webdir,'result'=>$result]);
     }
 }

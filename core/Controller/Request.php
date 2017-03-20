@@ -15,28 +15,37 @@ namespace Matts\Controller;
  */
 class Request
 {
-    private $request;
-
-    function __construct($request)
-    {
-        $this->request=$request;
-    }
+    private $post;
+    private $get;
+    private $cookies;
 
     /**
-     * @return mixed
+     * Request constructor.
+     * @param $post
+     * @param $get
+     * @param $session
+     * @param $cookies
      */
-    public function getRequest()
+    public function __construct($post, $get, $cookies)
     {
-        return $this->request;
+        $this->post = $post;
+        $this->get = $get;
+        $this->cookies = $cookies;
     }
 
-    /**
-     * @param mixed $request
-     */
-    public function setRequest($request)
-    {
-        $this->request = $request;
+
+    public function getURL(){
+        return explode("/", $this->get['path']);
     }
+
+    public function getPost(){
+        return $this->post;
+    }
+
+    public function getCookies(){
+        return $this->cookies;
+    }
+
 
 
 

@@ -1,7 +1,9 @@
 {
     "require": {
         "doctrine/orm": "^2.5",
-        "twig/twig": "~1.31"
+        "twig/twig": "~1.31",
+        "sonata-project/google-authenticator": "^1.0",
+        "kriswallsmith/assetic": "^1.4"
     },
     "autoload": {
         "psr-4": {"Matts\\": "core/",
