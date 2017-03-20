@@ -20,7 +20,8 @@ class IndexController extends Controller
     /**
      * @Route(route="")
      */
-    public function indexAction(Request $request){
+    public function indexAction(Request $request, $args){
+
         return $this->render('index.html.twig');
     }
 
@@ -28,9 +29,9 @@ class IndexController extends Controller
      * @param Request $request
      * @return string
      *
-     * @Route(route="test")
+     * @Route(route="test/$arg")
      */
-    public function handleRequest(Request $request)
+    public function request(Request $request, $args)
     {
         return $this->render('index.html.twig');
     }

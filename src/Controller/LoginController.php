@@ -18,8 +18,31 @@ use Matts\Controller\Request;
  */
 class LoginController extends Controller
 {
+    /*
+     * @Route(route="generate")
+     */
+    public function generateSecret(Request $request){
+        dump($this->get('googleAuth')->generatePrivateKey());
+    }
+
     /**
-     * @Route(route="login")
+     * @Route(route="token")
+     */
+    public function generateToken(Request $request){
+        //dump($request->getRequest());
+        dump($this->get('googleAuth')->generateToken($request->getRequest()[1]));
+    }
+
+    /**
+     * @Route(route="check")
+     */
+    public function checkToken(Request $request){
+        dump($this->get('googleAuth')->validateToken($request->getRequest()[1], $request->getRequest()[2]));
+    }
+
+
+    /**
+     * @Route(route="login/$test")
      */
     public function handleRequest(Request $request)
     {

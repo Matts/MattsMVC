@@ -3,8 +3,8 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
 
     {% block stylesheets %}
-    <link rel="stylesheet" href="libs/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="{{ assets('/libs/bootstrap-3.3.7-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ assets('/css/styles.css') }}">
     {% endblock %}
 </head>
 <body>
@@ -12,8 +12,8 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="js\jquery-3.1.1.min.js"></script>
-    <script src="libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="{{ assets('/js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ assets('/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
 {% endblock %}
 </body>
 </html>

@@ -5,12 +5,14 @@
         <h1 style="text-align: center">Users</h1>
         <table class="table">
             <thead>
+            <th>Id</th>
             <th>Username</th>
             <th>Active</th>
             </thead>
             <tbody>
             {% for res in result %}
                 <tr>
+                    <td>{{ res.id }}</td>
                     <td>{{ res.username }}</td>
                     <td>{{ res.active }}</td>
                 </tr>
