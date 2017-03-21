@@ -32,8 +32,14 @@ class LoginController extends Controller
      */
     public function loginPostAction(Request $request)
     {
-        if (empty($_SESSION['userid'])) {
-            if (!isset($request->getPost()['username']) || !isset($request->getPost()['username'])) {
+        $usr = false;
+        if (isset($_SESSION['userid'])) {
+            $usr = $this->get('databaseManager')->getEntityManager()->getRepository("Entity\\User")->findOneBy(['id' => $_SESSION['userid'], 'active' => 1]);
+        }
+        if (!($usr instanceof User)) {
+            if (empty($request->getPost()['username']) || empty($request->getPost()['username'])) {
+                session_unset();
+                session_destroy();
                 header("Refresh:0");
             }
             $username = $request->getPost()['username'];
@@ -43,13 +49,21 @@ class LoginController extends Controller
             if ($user instanceof User) {
                 if (password_verify($password, $user->getPassword())) {
                     $_SESSION['userid'] = $user->getId();
-                    return $this->render('security/2fa.html.twig', ['user' => $user]);
+                    if (!@isset($_COOKIE['trustpc']) & !@($_COOKIE['trustpc']==1)) {
+                        return $this->render('security/2fa.html.twig', ['user' => $user]);
+                    }else{
+                        header("Location: /MattsMVC/public/admin/");
+                    }
+
                 } else {
-                    return $this->render('security/login.html.twig');
+                    session_unset();
+                    session_destroy();
+                    header("Refresh:0");
                 }
             }
+
         } else {
-            if (!isset($request->getPost()['token'])) {
+            if (!@isset($request->getPost()['token'])) {
                 header("Refresh:0");
             }
             $user = $this->get('databaseManager')->getEntityManager()->getRepository("Entity\\User")->findOneBy(['id' => $_SESSION['userid'], 'active' => 1]);
@@ -58,6 +72,9 @@ class LoginController extends Controller
                 @session_start();
                 $_SESSION['username'] = $user->getUsername();
                 $_SESSION['authenticated'] = true;
+                if ($request->getPost()['trust'] == "on") {
+                    setcookie("trustpc", true, time()+(86400 * 30), '/');
+                }
                 header("Location: /MattsMVC/public/admin/");
             } else {
                 session_destroy();
@@ -67,35 +84,12 @@ class LoginController extends Controller
     }
 
     /**
-     * @Route(route="generate", method="GET")
+     * @Route(route="logout")
      */
-    public function generateSecret(Request $request)
+    public function logout(Request $request, $args)
     {
-        dump($this->get('googleAuth')->generatePrivateKey());
-    }
-
-    /**
-     * @Route(route="token", method="POST")
-     */
-    public function generateToken(Request $request)
-    {
-        dump($this->get('googleAuth')->generateToken($request->getPost()['secret']));
-    }
-
-    /**
-     * @Route(route="check", method="POST")
-     */
-    public function checkToken(Request $request)
-    {
-        dump($this->get('googleAuth')->validateToken($request->getPost()['secret'], $request->getPost()['token']));
-    }
-
-
-    /**
-     * @Route(route="login/$test")
-     */
-    public function handleRequest(Request $request)
-    {
-        dump($this->get('googleAuth')->validateToken("WOVSCLT4ZW7WNXLQ", "913999"));
+        session_unset();
+        session_destroy();
+        header("Location: /MattsMVC/public/");
     }
 }

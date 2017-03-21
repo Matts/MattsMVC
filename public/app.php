@@ -1,6 +1,7 @@
 <?php
 use Matts\Annotations\Route;
 use Matts\Controller\Request;
+
 session_start();
 define('parent', 'app');
 
@@ -16,17 +17,21 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
 require_once "../core/Core.php";
 
 
-
 if (!empty($_GET['path'])) {
     $path = explode('/', $_GET['path']);
 } else {
     $path = [""];
 }
-for ($i=0;$i<sizeof($path);$i++){
-    if(strlen($path[$i])<1){
-        $path[$i]=null;
+for ($i = 0; $i < sizeof($path); $i++) {
+    if (strlen($path[$i]) < 1) {
+        if ($i == 0) {
+            $path[$i] = "";
+        } else {
+            $path[$i] = null;
+            $path = array_filter($path);
+        }
     }
-    $path = array_filter($path);
+
 }
 
 $request = new Request($_POST, $_GET, $_COOKIE, $_SERVER['REQUEST_METHOD']);
@@ -41,32 +46,51 @@ foreach ($controllers as $controller) {
         if ($route instanceof Route) {
             $routeTemplate = explode('/', $route->getRoute());
 
-            for ($i=0;$i<sizeof($routeTemplate);$i++){
-                if(strlen($routeTemplate[$i])<1){
-                    $routeTemplate[$i]=null;
+            for ($i = 0; $i < sizeof($routeTemplate); $i++) {
+                if (strlen($routeTemplate[$i]) < 1) {
+                    if ($i == 0) {
+                        $routeTemplate[$i] = "";
+                    } else {
+                        $routeTemplate[$i] = null;
+                        $routeTemplate = array_filter($routeTemplate);
+                    }
                 }
-                $routeTemplate = array_filter($routeTemplate);
+
             }
-            
+
             $args = [];
             $matches = false;
-            if($route->method == $_SERVER['REQUEST_METHOD']){
+            if ($route->method == $_SERVER['REQUEST_METHOD']) {
 
-            if (sizeof($routeTemplate) == sizeof($path)) {
-                for ($i = 0; $i < sizeof($routeTemplate); $i++) {
-                    if ($routeTemplate[$i] == $path[$i]) {
-                        $matches = true;
-                    } else {
-                        if (substr($routeTemplate[$i], 0, 1) == "$") {
-                            $args[substr($routeTemplate[$i], 1, strlen($routeTemplate[$i]))] = $path[$i];
+                if (sizeof($routeTemplate) == sizeof($path)) {
+
+                    for ($i = 0; $i < sizeof($routeTemplate); $i++) {
+
+                        if ($routeTemplate[$i] == $path[$i]) {
                             $matches = true;
                         } else {
-                            $matches = false;
-                            break;
+                            if (substr($routeTemplate[$i], 0, 1) == "$") {
+                                $args[substr($routeTemplate[$i], 1, strlen($routeTemplate[$i]))] = $path[$i];
+                                $matches = true;
+                            } else {
+                                $matches = false;
+                                break;
+                            }
                         }
                     }
                 }
 
+                if ($matches) {
+
+                    $permissionRequired = ($container->get("annotationHelper")->getPermission($controller, $method->getName()));
+
+                    if ($permissionRequired) {
+                        if (isset($_SESSION['authenticated']) && $_SESSION['authenticated']) {
+                            $matches = true;
+                        } else {
+                            $matches = false;
+                        }
+                    }
                 }
             }
 
@@ -103,7 +127,7 @@ $handled=true;
 }
 }*/
 if (!$handled) {
-    echo "ERR";
+    echo $container->get('twig')->render('error.html.twig');
 }
 
 

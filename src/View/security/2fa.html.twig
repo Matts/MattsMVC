@@ -9,8 +9,18 @@
         <h1>Welcome {{ user.username }}, please provide your 2fa key</h1>
         <hr/>
         <form action="" method="post">
-            <input type="text" id="token" name="token">
-            <input type="submit" value="Submit">
+            <div class="form-group">
+                <label for="token">Token</label>
+                <input type="text" class="form-control" id="token" aria-describedby="tokenHelp" name="token" placeholder="Enter 2fa token">
+                <small id="usernameHelp" class="form-text text-muted">Please generate a token with your mobile app</small>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="trust" id="trust">
+                    Trust This PC
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 {% endblock %}

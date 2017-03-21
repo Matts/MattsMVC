@@ -18,5 +18,4 @@ class Permission
     public $authenticated=false;
     public $roleRequired;
 
-
 }

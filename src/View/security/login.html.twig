@@ -5,13 +5,21 @@
 {% endblock %}
 
 {% block body %}
+
     <div class="container">
     <h1>Login</h1>
     <hr/>
     <form action="" method="post">
-        <input type="text" id="username" name="username">
-        <input type="password" id="password" name="password">
-        <input type="submit" value="Submit">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" name="username" placeholder="Enter username">
+            <small id="usernameHelp" class="form-text text-muted">ex. JohnDoe</small>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-lg btn-primary">Login</button>
     </form>
     </div>
 {% endblock %}

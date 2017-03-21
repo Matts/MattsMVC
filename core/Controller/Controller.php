@@ -23,6 +23,7 @@ class Controller
         /**
          * @var $twig \Twig_Environment
          */
+
         $twig = $this->get('twig');
         return $twig->render($filename, $parameters);
     }
