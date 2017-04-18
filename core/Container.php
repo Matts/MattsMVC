@@ -1,7 +1,6 @@
 <?php
 namespace Matts;
 
-
 use Matts\Libraries\DatabaseManager;
 use Matts\Security\GoogleAuth;
 use Matts\util\AnnotationHelper;
